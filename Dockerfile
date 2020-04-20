@@ -13,6 +13,7 @@ COPY --from=build-stage /go/bin/goofys /usr/local/bin
 
 RUN mkdir /run/nginx
 COPY default.conf /etc/nginx/conf.d
+COPY cors_support /etc/nginx/
 COPY entrypoint.sh .
 
 RUN chmod a+x entrypoint.sh
@@ -21,4 +22,4 @@ EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["./entrypoint.sh"]
